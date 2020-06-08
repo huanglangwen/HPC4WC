@@ -163,6 +163,7 @@ contains
                 do i = 1 + num_halo, nx + num_halo
                     in_field(i, j, k) = out_field(i, j, k)
                     ! TODO
+                    if (increase_counters) byte_counter = byte_counter + 2 * wp
                 end do
                 end do
                 end do
@@ -200,6 +201,8 @@ contains
                 + field(i - 1, j, k) + field(i + 1, j, k)  &
                 + field(i, j - 1, k) + field(i, j + 1, k)
             ! TODO
+            if (increase_counters) byte_counter = byte_counter + 6 * wp
+            if (increase_counters) flop_counter = flop_counter + 5
         end do
         end do
         end do
@@ -230,6 +233,7 @@ contains
         do i = 1 + num_halo, nx + num_halo
             field(i, j, k) = field(i, j + ny, k)
             ! TODO
+            if (increase_counters) byte_counter = byte_counter + 2 * wp
         end do
         end do
         end do
@@ -240,6 +244,7 @@ contains
         do i = 1 + num_halo, nx + num_halo
             field(i, j, k) = field(i, j - ny, k)
             ! TODO
+            if (increase_counters) byte_counter = byte_counter + 2 * wp
         end do
         end do
         end do
@@ -250,6 +255,7 @@ contains
         do i = 1, num_halo
             field(i, j, k) = field(i + nx, j, k)
             ! TODO
+            if (increase_counters) byte_counter = byte_counter + 2 * wp
         end do
         end do
         end do
@@ -260,6 +266,7 @@ contains
         do i = nx + num_halo + 1, nx + 2 * num_halo
             field(i, j, k) = field(i - nx, j, k)
             ! TODO
+            if (increase_counters) byte_counter = byte_counter + 2 * wp
         end do
         end do
         end do
